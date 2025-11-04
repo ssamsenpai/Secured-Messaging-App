@@ -28,18 +28,41 @@ def main():
     print("Choose cipher method:")
     print("1 - Caesar Cipher")
     print("2 - Vigenere Cipher")
+    print("3 - Substitution Cipher")
+    print("4 - Transposition Cipher")
     choice = input("Enter 1 or 2: ").strip()
     if choice == "2":
         method = "vigenere"
         key = input("Enter Vigenere key (word): ").strip().upper()
     else:
-        method = "caesar"
-        while True:
-            try:
-                key = int(input("Enter Caesar key (0-25): ").strip())
-                break
-            except:
-                print("Enter an integer.")
+        # allow more methods
+        if choice == "3":
+            method = "substitution"
+            while True:
+                key = input("Enter substitution key (26 letters, mapping for A..Z): ").strip()
+                clean = ''.join([c for c in key if c.isalpha()])
+                if len(clean) == 26:
+                    key = clean.upper()
+                    break
+                print("Key must contain 26 letters (A-Z). Try again.")
+        elif choice == "4":
+            method = "transposition"
+            while True:
+                try:
+                    key = int(input("Enter transposition key (number of columns > 0): ").strip())
+                    if key > 0:
+                        break
+                    print("Enter an integer > 0.")
+                except:
+                    print("Enter an integer.")
+        else:
+            method = "caesar"
+            while True:
+                try:
+                    key = int(input("Enter Caesar key (0-25): ").strip())
+                    break
+                except:
+                    print("Enter an integer.")
     
     print(f"Using {method} with key={key}")
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
