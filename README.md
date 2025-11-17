@@ -1,85 +1,108 @@
-Secure Messaging App
+🔐 Secure Messaging App
 
-A simple client-server messaging application built in Python, developed progressively throughout the semester.
-The goal is to practice encryption, hashing, and authentication concepts through a functional messaging system.
+A simple yet educational Python-based client–server messaging application built throughout the semester.
+It focuses on learning and applying encryption, hashing, and authentication concepts while building a functional messaging system.
+
+⸻
 
 🎯 Project Objective
 
 This project aims to:
+	•	Build a secure chat system using socket programming (TCP).
+	•	Ensure confidentiality by encrypting messages on the client side.
+	•	Prevent the server from ever seeing plaintext messages.
+	•	Implement classical cryptography techniques:
+	•	Caesar Cipher
+	•	Vigenère Cipher
+	•	Prepare for advanced concepts such as hashing, salting, and user authentication.
 
-Implement a secure chat between multiple clients using socket programming.
+⸻
 
-Ensure confidentiality by encrypting messages on the sender side and decrypting only on the receiver side.
+🧠 Current Features (Week 2)
+	•	✔️ Client–server architecture (Python sockets)
+	•	✔️ Caesar cipher encryption & decryption
+	•	✔️ Vigenère cipher encryption & decryption
+	•	✔️ End-to-end encryption (clients encrypt/decrypt, server only forwards ciphertext)
+	•	✔️ Multiple clients supported simultaneously
 
-Introduce and apply classical encryption methods (Caesar, Vigenère), and later explore hashing and authentication.
+Server only logs encrypted messages, maintaining confidentiality.
 
-🧠 Current Features (as of Week 2)
+⸻
 
-Client–server architecture using sockets
-Caesar cipher encryption and decryption
-Vigenère cipher encryption and decryption
-Encrypted messages are sent through the server
-Server never sees plaintext, only ciphertext
-Each client decrypts locally to view the original message
+📁 Project Structure
 
-Project Structure
 messenger_project/
-├── client.py # Client interface (console)
-├── server.py # Server that forwards encrypted messages
-├── crypto.py # Contains Caesar and Vigenere ciphers
-└── README.md
+├── client.py        # Client interface (console-based)
+├── server.py        # Server that broadcasts encrypted messages
+├── crypto.py        # Caesar & Vigenère cipher implementations
+└── README.md        # Project documentation
 
-🚀 How to Run
 
-Start the server
+⸻
+
+🚀 How to Run the Application
+
+1. Start the server
 
 python server.py
 
-Open two terminals and run clients:
+2. Open two or more terminals and start clients
 
 python client.py
 
-Choose your nickname.
+3. Follow the on-screen steps
+	•	Choose a nickname
+	•	Select encryption method:
+	•	1 → Caesar
+	•	2 → Vigenère
+	•	Enter the encryption key
+	•	Start chatting securely 🎉
 
-Select the cipher method (1 for Caesar, 2 for Vigenere).
+⸻
 
-Enter the encryption key.
+📡 Example Outputs
 
-Type messages and see encryption/decryption in action!
-
-Server output example:
+Server console
 
 [Encrypted log] from Alice: LXFOPVEFRNHR
 
-Client output example:
+Client console
 
 [RECV] (ciphertext: LXFOPVEFRNHR)
 [PLAINTEXT] ATTACKATDAWN
 
-🔒 How Encryption Works
-Cipher Key Type Description Example
-Caesar Integer Shifts each letter by a fixed number. "HELLO" with key 3 → "KHOOR"
-Vigenère Word Each letter of the key determines a shift. "HELLO" with key "KEY" → "RIJVS"
 
-Messages are:
+⸻
 
-Encrypted before sending.
+🔒 Encryption Methods Overview
 
-Transmitted as ciphertext.
+Cipher	Key Type	Description	Example
+Caesar	Integer	Shifts each letter by a fixed number.	“HELLO” + 3 → “KHOOR”
+Vigenère	Word	Each letter of key determines the shift amount.	“HELLO” + “KEY” → “RIJVS”
 
-Decrypted only by clients who know the key.
+Message Flow:
+	1.	User writes message
+	2.	Client encrypts it
+	3.	Server forwards ciphertext
+	4.	Client decrypts it locally
 
-Next Steps
+⸻
 
-Planned for future sessions:
+📌 Next Steps (Planned)
 
-Add user authentication (username + hashed password).
+Future improvements for upcoming sessions:
+	•	🔑 Add user authentication (username + hashed password)
+	•	💬 Store persistent chat history
+	•	🎨 Build a modern UI (Lovable / graphical interface)
+	•	🔐 Add more encryption & hashing:
+	•	SHA-256 hashing
+	•	Diffie–Hellman key exchange
+	•	Simple RSA implementation (optional)
+	•	👥 Multi-room chat support
 
-Store chat history.
+⸻
 
-Add a clean Lovable UI (graphical interface).
+🧬 About
 
-Implement more encryption/hashing algorithms .
-
-Bioinformatics student — USTHB
-This project is part of the “BIO” module.
+Bioinformatics Student — USTHB
+This project is developed as part of the BIO module, focusing on practical applications of cryptography and secure communication.
