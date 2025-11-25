@@ -1,6 +1,7 @@
 # server.py
 import socket
 import threading
+from crypto import caesar_break
 
 HOST = '127.0.0.1'   # localhost for testing
 PORT = 65432
@@ -31,8 +32,31 @@ def handle_client(conn, addr):
             if not data:
                 break
             # data is expected to be ciphertext bytes
+            msg = data.decode('utf-8', errors='ignore')
+            
             # Log ciphertext only:
-            print(f"[Encrypted log] from {nickname}: {data.decode('utf-8', errors='ignore')}")
+            # If it looks like RSA (long hex string), print the integer value c (result of the formula)
+            try:
+                # RSA 1024 bits is ~256 hex chars. We use a threshold to distinguish from short text.
+                if len(msg) > 32: 
+                    c_val = int(msg, 16)
+                    print(f"[Encrypted log] from {nickname}: c = {c_val}")
+                else:
+                    # Try to auto-break Caesar for logging purposes
+                    try:
+                        broken_text, shift = caesar_break(msg)
+                        # Only show if it looks meaningful (shift != 0 or just show it anyway)
+                        print(f"[Encrypted log] from {nickname}: {msg} -> {broken_text} (shift {shift})")
+                    except:
+                        print(f"[Encrypted log] from {nickname}: {msg}")
+            except ValueError:
+                # Not a hex string (e.g. Caesar text), print as is
+                try:
+                    broken_text, shift = caesar_break(msg)
+                    print(f"[Encrypted log] from {nickname}: {msg} -> {broken_text} (shift {shift})")
+                except:
+                    print(f"[Encrypted log] from {nickname}: {msg}")
+
             # Forward ciphertext to other clients
             broadcast(conn, data)
     except Exception as e:
@@ -45,6 +69,8 @@ def handle_client(conn, addr):
 
 def main():
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        # Allow reusing the address to avoid "Address already in use" errors
+        s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         s.bind((HOST, PORT))
         s.listen()
         print(f"Server listening on {HOST}:{PORT}")
