@@ -1,0 +1,110 @@
+[
+  {
+    "sender": "oussama",
+    "recipient": "amine",
+    "text": "sasa",
+    "ciphertext": "vdvd",
+    "is_encrypted": true,
+    "timestamp": "11:35 PM",
+    "date": "2025-12-15"
+  },
+  {
+    "sender": "oussama",
+    "recipient": "amine",
+    "text": "sasasasa",
+    "ciphertext": "vdvdvdvd",
+    "is_encrypted": true,
+    "timestamp": "11:35 PM",
+    "date": "2025-12-15"
+  },
+  {
+    "sender": "oussama",
+    "recipient": "amine",
+    "text": "sasasasasasasa",
+    "ciphertext": "vdvdvdvdvdvdvd",
+    "is_encrypted": true,
+    "timestamp": "11:35 PM",
+    "date": "2025-12-15"
+  },
+  {
+    "sender": "amine",
+    "recipient": "oussama",
+    "text": "dog",
+    "ciphertext": "grj",
+    "is_encrypted": true,
+    "timestamp": "11:35 PM",
+    "date": "2025-12-15"
+  },
+  {
+    "sender": "User 01",
+    "recipient": "oussama",
+    "text": "message 01",
+    "ciphertext": "12d0fff5fbc479f74575564b807ac963fe828bc95cd79490357845d75e99d82854790f25ae81333b9f64d2a14149c1d6734fce02fc54764a26511148793bd67befab4bb972a4863383010e4330743ec263bab98eb95f7eb07a440ddd4d55e4f128c51c43303ee092e94c62c9fa099babfb73a96ec959ee51045d3136f24a4db9",
+    "is_encrypted": true,
+    "timestamp": "11:49 PM",
+    "date": "2025-12-15"
+  },
+  {
+    "sender": "oussama",
+    "recipient": "User 01",
+    "text": "sdasdasdas",
+    "ciphertext": "vgdvgdvgdv",
+    "is_encrypted": true,
+    "timestamp": "11:50 PM",
+    "date": "2025-12-15"
+  },
+  {
+    "sender": "User 02",
+    "recipient": "User 01",
+    "text": "salam khouya",
+    "ciphertext": "56c1c9dd3ccdbfd42b06e669962018b9f896a35faa4a9cca81237d807566b0f66dffc0d4649ed3bd32bfeb5cb866940674a18095a146bbdf03acb067d7074001c428554fe4a8288bec791d97f5ff44ae5a7fb252c1cc22a2ca1e2912c477bcf81c35350f6e493fcc7a448f9f2f54c368ffaa30b413895c3d3f46504e102844e5",
+    "is_encrypted": true,
+    "timestamp": "11:52 PM",
+    "date": "2025-12-15"
+  },
+  {
+    "sender": "User 02",
+    "recipient": "User 01",
+    "text": "salam khouya",
+    "ciphertext": "56c1c9dd3ccdbfd42b06e669962018b9f896a35faa4a9cca81237d807566b0f66dffc0d4649ed3bd32bfeb5cb866940674a18095a146bbdf03acb067d7074001c428554fe4a8288bec791d97f5ff44ae5a7fb252c1cc22a2ca1e2912c477bcf81c35350f6e493fcc7a448f9f2f54c368ffaa30b413895c3d3f46504e102844e5",
+    "is_encrypted": true,
+    "timestamp": "11:52 PM",
+    "date": "2025-12-15"
+  },
+  {
+    "sender": "User 02",
+    "recipient": "User 01",
+    "text": "salam khouya",
+    "ciphertext": "56c1c9dd3ccdbfd42b06e669962018b9f896a35faa4a9cca81237d807566b0f66dffc0d4649ed3bd32bfeb5cb866940674a18095a146bbdf03acb067d7074001c428554fe4a8288bec791d97f5ff44ae5a7fb252c1cc22a2ca1e2912c477bcf81c35350f6e493fcc7a448f9f2f54c368ffaa30b413895c3d3f46504e102844e5",
+    "is_encrypted": true,
+    "timestamp": "11:52 PM",
+    "date": "2025-12-15"
+  },
+  {
+    "sender": "User 01",
+    "recipient": "User 02",
+    "text": "salut 3lik",
+    "ciphertext": "dexig 3wmw",
+    "is_encrypted": true,
+    "timestamp": "11:52 PM",
+    "date": "2025-12-15"
+  },
+  {
+    "sender": "Username",
+    "recipient": "amine",
+    "text": "salam khouya kirak",
+    "ciphertext": "2c3142706c5e1840814a0d236a1b9084809c4c507a65a824e7077493d1be97041bedd70f4ca842f57c5f4de707a44b0d63360a8366f7b39ed468dbc47aea027b7449f3514d700f248c87fd4afc35ceb581065305f4437392d4814f7f846f1fa92b0f71bae8ce9a522e8b5b00d35227a8a10cab7d3d247167e3b22f85c88d0813",
+    "is_encrypted": true,
+    "timestamp": "12:01 AM",
+    "date": "2025-12-16"
+  },
+  {
+    "sender": "amine",
+    "recipient": "Username",
+    "text": "wa3likom salam khouya",
+    "ciphertext": "56a53873bdb94e2982e6579a87322a0ff06b1c9cf24052c707faf22aba433732835dbe8d3525a7b5bc4a732d4af916594e7517b9c0110f1a70a36de2b454286722922f793b3cbef84309330aae2e601d86393e26283aecfeb818f870104b69afe11231c4f3daaaf8bd25cece24c72c797e9677f02521cb82ac2e4781a3684171",
+    "is_encrypted": true,
+    "timestamp": "12:01 AM",
+    "date": "2025-12-16"
+  }
+]

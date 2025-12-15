@@ -1,52 +1,72 @@
 🔐 Secure Messaging App
 
-A simple yet educational Python-based client–server messaging application built throughout the semester.
-It focuses on learning and applying encryption, hashing, and authentication concepts while building a functional messaging system.
+A Python-based client–server messaging application with a modern Streamlit frontend.
+It focuses on encryption, hashing, and secure authentication while providing an intuitive chat interface.
 
 ⸻
 
 🎯 Project Objective
 
-This project aims to:
-	•	Build a secure chat system using socket programming (TCP).
-	•	Ensure confidentiality by encrypting messages on the client side.
-	•	Prevent the server from ever seeing plaintext messages.
-	•	Implement classical cryptography techniques:
-	•	Caesar Cipher
-	•	Vigenère Cipher
-	•	Prepare for advanced concepts such as hashing, salting, and user authentication.
+This project demonstrates:
+	•	Secure chat system using socket programming (TCP)
+	•	End-to-end encryption (clients encrypt/decrypt, server only forwards ciphertext)
+	•	Multiple cryptographic methods:
+		•	Caesar Cipher
+		•	Vigenère Cipher
+		•	Substitution Cipher
+		•	Transposition Cipher
+		•	RSA (Public-key cryptography)
+		•	Caesar Auto-Breaker
+	•	Secure user authentication with bcrypt password hashing
+	•	Modern web-based UI with Streamlit
 
 ⸻
 
-🧠 Current Features (Week 2)
-	•	✔️ Client–server architecture (Python sockets)
-	•	✔️ Caesar cipher encryption & decryption
-	•	✔️ Vigenère cipher encryption & decryption
-	•	✔️ End-to-end encryption (clients encrypt/decrypt, server only forwards ciphertext)
-	•	✔️ Multiple clients supported simultaneously
-
-Server only logs encrypted messages, maintaining confidentiality.
+🧠 Features
+	•	✔️ **Streamlit Web Interface** - Modern, user-friendly chat UI
+	•	✔️ **User Authentication** - Secure login/registration with bcrypt password hashing
+	•	✔️ **Multiple Cipher Methods** - Switch between 6 different encryption methods in real-time
+	•	✔️ **Server Control** - Start/stop server directly from the UI
+	•	✔️ **End-to-End Encryption** - Messages encrypted on client side, server never sees plaintext
+	•	✔️ **Multi-Client Support** - Multiple users can chat simultaneously
+	•	✔️ **Real-time Messaging** - Live message updates with encryption/decryption
 
 ⸻
 
 📁 Project Structure
 
 messenger_project/
-├── client.py        # Client interface (console-based)
-├── server.py        # Server that broadcasts encrypted messages
-├── crypto.py        # Caesar & Vigenère cipher implementations
-└── README.md        # Project documentation
-
+├── app.py               # Streamlit frontend application
+├── auth.py              # Authentication system with bcrypt
+├── client.py            # CLI client (legacy)
+├── server.py            # Server that broadcasts encrypted messages
+├── crypto.py            # All cipher implementations
+├── users.json           # User database (auto-generated)
+├── english_words.txt    # Dictionary for Caesar breaker
+├── requirements.txt     # Python dependencies
+└── README.md            # Project documentation
 
 ⸻
 
 🚀 How to Run the Application
 
-1. Start the server
+### Option 1: Streamlit Web Interface (Recommended)
 
-python server.py
+1. Install dependencies
 
-2. Open two or more terminals and start clients
+pip install -r requirements.txt
+
+2. Run the Streamlit app
+
+streamlit run app.py
+
+3. Open your browser at http://localhost:8501
+
+4. Create an account or login
+
+5. Start the server using the sidebar button
+
+6. Connect to chat and start messaging!
 
 python client.py
 
