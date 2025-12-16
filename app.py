@@ -348,6 +348,8 @@ if 'show_reset_password' not in st.session_state:
     st.session_state.show_reset_password = False
 if 'default_chat_set' not in st.session_state:
     st.session_state.default_chat_set = False
+if 'reset_username' not in st.session_state:
+    st.session_state.reset_username = None
 
 def receiver_loop(sock):
     """Background thread to receive messages"""
@@ -514,42 +516,48 @@ def login_page():
     if st.session_state.show_reset_password:
         st.subheader("Reset Password with Face Verification")
         
-        reset_username = st.text_input("Username", key="reset_username")
+        # Prefill username from the last failed login
+        reset_username_prefill = st.session_state.reset_username or ""
+        reset_username = st.text_input("Username", value=reset_username_prefill, key="reset_username_field", disabled=bool(reset_username_prefill))
+        st.session_state.reset_username = reset_username
         
-        if has_face_data(reset_username):
-            st.info("📸 Please capture your face to verify your identity")
-            
-            face_image = st.camera_input("Take a photo", key="reset_face")
-            
-            if face_image:
-                if verify_face_image(reset_username, face_image):
-                    st.success("✅ Face verified! You can now reset your password")
-                    
-                    new_password = st.text_input("New Password", type="password", key="new_pass")
-                    confirm_new = st.text_input("Confirm New Password", type="password", key="confirm_new")
-                    
-                    if st.button("Reset Password", use_container_width=True):
-                        if new_password == confirm_new and len(new_password) >= 6:
-                            from auth import hash_password, save_users
-                            users = load_users()
-                            users[reset_username] = hash_password(new_password)
-                            save_users(users)
-                            
-                            st.success("Password reset successful! Redirecting to login...")
-                            st.session_state.show_reset_password = False
-                            st.session_state.login_attempts = 0
-                            time.sleep(2)
-                            st.rerun()
-                        else:
-                            st.error("Passwords must match and be at least 6 characters")
-                else:
-                    st.error("❌ Face verification failed. Please try again.")
-        else:
-            st.error("No face data found for this user. Cannot reset password.")
+        if reset_username:
+            if has_face_data(reset_username):
+                st.info("📸 Please capture your face to verify your identity")
+                
+                face_image = st.camera_input("Take a photo", key="reset_face")
+                
+                if face_image:
+                    if verify_face_image(reset_username, face_image):
+                        st.success("✅ Face verified! Enter a new password")
+                        
+                        new_password = st.text_input("New Password", type="password", key="new_pass")
+                        confirm_new = st.text_input("Confirm New Password", type="password", key="confirm_new")
+                        
+                        if st.button("Reset Password", use_container_width=True):
+                            if new_password == confirm_new and len(new_password) >= 6:
+                                from auth import hash_password, save_users
+                                users = load_users()
+                                users[reset_username] = hash_password(new_password)
+                                save_users(users)
+                                
+                                st.success("Password reset successful! Please log in with your new password.")
+                                st.session_state.show_reset_password = False
+                                st.session_state.login_attempts = 0
+                                st.session_state.reset_username = None
+                                time.sleep(1.5)
+                                st.rerun()
+                            else:
+                                st.error("Passwords must match and be at least 6 characters")
+                    else:
+                        st.error("❌ Face verification failed. Please try again.")
+            else:
+                st.error("No face data found for this user. Cannot reset password.")
         
         if st.button("Back to Login", type="secondary", use_container_width=True):
             st.session_state.show_reset_password = False
             st.session_state.login_attempts = 0
+            st.session_state.reset_username = None
             st.rerun()
     
     else:
@@ -565,6 +573,7 @@ def login_page():
                     st.session_state.authenticated = True
                     st.session_state.username = username
                     st.session_state.login_attempts = 0
+                    st.session_state.reset_username = None
                     st.rerun()
                 else:
                     st.session_state.login_attempts += 1
@@ -572,10 +581,14 @@ def login_page():
                     
                     if st.session_state.login_attempts >= 2:
                         if has_face_data(username):
-                            st.warning("Too many failed attempts. Redirecting to password reset...")
-                            time.sleep(2)
+                            st.session_state.reset_username = username
+                            st.warning("Too many failed attempts. Redirecting to password reset with Face ID...")
+                            time.sleep(1.5)
                             st.session_state.show_reset_password = True
+                            st.session_state.login_attempts = 0
                             st.rerun()
+                        else:
+                            st.info("No face data found for this user. Please register Face ID or contact support.")
         
         with tab2:
             st.info("🔐 Your face image will be securely stored locally for password recovery only.")

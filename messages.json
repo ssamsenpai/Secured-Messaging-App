@@ -106,5 +106,14 @@
     "is_encrypted": true,
     "timestamp": "12:01 AM",
     "date": "2025-12-16"
+  },
+  {
+    "sender": "amine",
+    "recipient": "oussama",
+    "text": "dd",
+    "ciphertext": "gg",
+    "is_encrypted": true,
+    "timestamp": "05:48 AM",
+    "date": "2025-12-16"
   }
 ]
